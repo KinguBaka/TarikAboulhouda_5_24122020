@@ -1,18 +1,37 @@
-#produits img{
+#listeProduits img{
     object-fit: cover;
     height: 50%;
     width: 50%;
     border: 1px solid grey;
     border-radius: 15px;
+    margin: 15px;
 }
 
-#produits div{
+#listeProduits div{
     padding: 15px;
     margin: 15px 0;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 8px 5px 13px lightgray ;
+    font-size: 1.5em;
+}
+
+#produits img {
+    object-fit: cover;
+    height: 70%;
+    width: 70%;
+    border: 1px solid grey;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+#produits div {
+    padding: 30px;
+    margin: 30px 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.3em;
 }
 
 h1 {
@@ -30,6 +49,13 @@ a:hover {
 
 a:link {
     text-decoration: none;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 
 footer div{

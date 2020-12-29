@@ -4,7 +4,7 @@ function afficherLeToutSousFormeDeDivision(nounours) {
         let newNournours = document.createElement("div");       // Création d'une div pour chaque nounourse
         newNournours.id = elem._id;     // Id donné à chaque div
         newNournours.setAttribute("class", "text-center border border-secondary rounded");
-        document.getElementById("produits").appendChild(newNournours);   //Div placé avant la div avec l'id "produits"
+        document.getElementById("listeProduits").appendChild(newNournours);   //Div placé avant la div avec l'id "produits"
         let newName = document.createElement("h2");     // Création d'un titre pour la Div
         newName.textContent = elem.name;    // Le titre est le nom du nounourse
         document.getElementById(elem._id).appendChild(newName);     // titre placé dans la div
@@ -16,7 +16,7 @@ function afficherLeToutSousFormeDeDivision(nounours) {
         document.getElementById(elem._id).appendChild(newPrix); // prix placé dans la div
         let newLink = document.createElement("a");  // création du lien
         newLink.id = elem.name; // création de l'id du lien avec le nom du produit
-        newLink.setAttribute("href", "produit.html/"+elem.name);    //lien renseigné
+        newLink.setAttribute("href", "produit.html?name="+elem.name);    //lien renseigné
         document.getElementById(elem._id).appendChild(newLink);     //lien placé dans la div
         let newButton = document.createElement("button");   // création d'un bouton
         newButton.setAttribute("class", "btn btn-outline-primary");     //personnalisation du lien avec bootstrap
