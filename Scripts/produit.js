@@ -19,6 +19,24 @@ function afficherLeProduit(nounours) {
       let newDescription = document.createElement("p");
       newDescription.textContent = elem.description;
       document.getElementById(elem._id).appendChild(newDescription);
+      let newSelect = document.createElement("select");
+      newSelect.id = "select";
+      newSelect.setAttribute("class", "form-select");
+      newSelect.setAttribute("aria-label", "Default select example")
+      document.getElementById(elem._id).appendChild(newSelect);
+      let selectDefault = document.createElement("option");
+      selectDefault.setAttribute("selected", "")
+      selectDefault.textContent= " Choisir une couleur "
+      document.getElementById("select").appendChild(selectDefault);
+      let colors = elem.colors;
+      let i = 0;
+      colors.forEach(element => {
+        let newColors = document.createElement("option");
+        newColors.textContent = element;
+        i++;
+        newColors.setAttribute("value", i);
+        document.getElementById("select").appendChild(newColors);
+      });
       let newPrix = document.createElement("p");
       newPrix.textContent = elem.price/100 + "€";
       document.getElementById(elem._id).appendChild(newPrix);
