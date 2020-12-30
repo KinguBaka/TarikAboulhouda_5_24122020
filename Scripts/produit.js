@@ -42,8 +42,16 @@ function afficherLeProduit(nounours) {
       document.getElementById(elem._id).appendChild(newPrix);
       let newButton = document.createElement("button");
       newButton.setAttribute("class", "btn btn-outline-primary");
-      newButton.textContent = "Ajouter au panier";
+      newButton.textContent = "ajouter au panier";
       document.getElementById(elem._id).appendChild(newButton);
+      let newLink = document.createElement("a");
+      newLink.id = "linkPanier";
+      newLink.setAttribute("href", "panier.html");
+      document.getElementById(elem._id).appendChild(newLink);
+      let newPanier = document.createElement("button");
+      newPanier.setAttribute("class", "btn btn-outline-primary");
+      newPanier.textContent = "Voir le panier";
+      document.getElementById("linkPanier").appendChild(newPanier);
     }
   }
 }
