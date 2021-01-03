@@ -7,27 +7,12 @@ const nameProduct = pageName.get('name');
 function afficherLeProduit(nounours) {
   for (let elem of nounours) {
     if (elem.name == nameProduct){
-      let newNournours = document.createElement("div");
-      newNournours.id = elem._id;
-      newNournours.setAttribute("class", "text-center border border-secondary rounded");
-      document.getElementById("produits").appendChild(newNournours);
       let newName = document.getElementById("nameTitle");
       newName.textContent = elem.name;
-      let newImg = document.createElement("img");
+      let newImg = document.getElementById("imageNounours");
       newImg.setAttribute("src", elem.imageUrl);
-      document.getElementById(elem._id).appendChild(newImg);
-      let newDescription = document.createElement("p");
+      let newDescription = document.getElementById("descriptionNounours");
       newDescription.textContent = elem.description;
-      document.getElementById(elem._id).appendChild(newDescription);
-      let newSelect = document.createElement("select");
-      newSelect.id = "select";
-      newSelect.setAttribute("class", "form-select");
-      newSelect.setAttribute("aria-label", "Default select example")
-      document.getElementById(elem._id).appendChild(newSelect);
-      let selectDefault = document.createElement("option");
-      selectDefault.setAttribute("selected", "")
-      selectDefault.textContent= " Choisir une couleur "
-      document.getElementById("select").appendChild(selectDefault);
       let colors = elem.colors;
       let i = 0;
       colors.forEach(element => {
@@ -37,21 +22,8 @@ function afficherLeProduit(nounours) {
         newColors.setAttribute("value", i);
         document.getElementById("select").appendChild(newColors);
       });
-      let newPrix = document.createElement("p");
+      let newPrix = document.getElementById("prix");
       newPrix.textContent = elem.price/100 + "€";
-      document.getElementById(elem._id).appendChild(newPrix);
-      let newButton = document.createElement("button");
-      newButton.setAttribute("class", "btn btn-outline-primary");
-      newButton.textContent = "ajouter au panier";
-      document.getElementById(elem._id).appendChild(newButton);
-      let newLink = document.createElement("a");
-      newLink.id = "linkPanier";
-      newLink.setAttribute("href", "panier.html");
-      document.getElementById(elem._id).appendChild(newLink);
-      let newPanier = document.createElement("button");
-      newPanier.setAttribute("class", "btn btn-outline-primary");
-      newPanier.textContent = "Voir le panier";
-      document.getElementById("linkPanier").appendChild(newPanier);
     }
   }
 }

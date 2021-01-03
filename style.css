@@ -26,6 +26,10 @@
     margin: 15px;
 }
 
+#produits button {
+    margin: 10px;
+}
+
 #produits div {
     padding: 30px;
     margin: 30px 0;

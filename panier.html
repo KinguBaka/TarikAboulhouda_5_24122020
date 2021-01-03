@@ -32,6 +32,29 @@
             </nav>
         </header>
 
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="text-center">Mon panier</h1>
+            </div>
+            <div id="listePanier">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+
+                    </tbody>
+                </table>
+
+                <p>Sous total : <span id="subTotal"></span>€</p>
+            </div>
+            <button id="confirmCommand" class="btn btn-outline-primary">Passer la commande</button>
+        </div>
+
 
         <!-- Footer-->
         <footer class="bg-dark">
