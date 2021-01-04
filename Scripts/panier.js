@@ -1,26 +1,4 @@
-/*function ajouteUnElementAuPanier() {
-    let idName = document.getElementById("nameTitle").innerHTML;
-    let color = document.getElementById("select").options[document.getElementById("select").selectedIndex].text;
-    let price = document.getElementById("prix").innerHTML
-    let quantity = 1;
-    let panier = new Object;
-    Object.defineProperty(panier, idName, {
-        value: {"color":color, "price":price, "quantity": quantity}
-    });
-    localStorage.setItem("listeProduit", JSON.stringify(panier));
-    console.log(panier);
-}*/
 
-
-/*function ajouteUnElementAuPanier() {
-    let idName = document.getElementById("nameTitle").innerHTML;
-    let color = document.getElementById("select").options[document.getElementById("select").selectedIndex].text;
-    let price = document.getElementById("prix").innerHTML
-    let panier = {}
-    panier[idName] = [{"color":color, "price":price, "quantity":1}];
-    localStorage.setItem("listeProduit", JSON.stringify(panier));
-    console.log(panier);
-}*/
 
 function ajouteUnElementAuPanier() {
     //Récupére l'objet JSON deja renseigné dans le localstorage
@@ -32,18 +10,23 @@ function ajouteUnElementAuPanier() {
         "price" : document.getElementById("prix").innerHTML,
         "quantity" : 1
     };
-    // Condiftion afin d'augmenter la quantité si l'element est deja présent NOK
-    if (oldItems.length >= 1) {
+    // Condition afin d'augmenter la quantité si l'element est deja présent
+    // et l'ajouter si il le l'es pas.
+    let i = 0;
+    if (oldItems.length < 1) {
+        oldItems.push(newItem);
+    } else {
         for (let elem of oldItems) {
             if (elem.name === newItem.name && 
                 elem.color === newItem.color) {
-                elem.quantity +=1;
-            } else {
-                oldItems.push(newItem);
+                elem.quantity += 1;
+                i = 1;
+                break
             }
         }
-    } else {
-        oldItems.push(newItem);
+        if (i == 0) {
+            oldItems.push(newItem);
+        }
     }
     //Ajoute l'array avec les nouveaus objet dans 
     localStorage.setItem("listeProduit", JSON.stringify(oldItems));
