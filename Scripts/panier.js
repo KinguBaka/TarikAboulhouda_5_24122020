@@ -49,16 +49,13 @@ function afficherLePanier () {
         }
         for (let elem of Object.keys(storagePanier[i])) {
             if (elem == "price") {
-                let test = storagePanier[i].elem;
-                console.log(test);
-                //prix += 
+                prix += storagePanier[i].price;
             }
         }
         x++;
-        /*let totalPrix = document.getElementById("subTotal");
-        
-        totalPrix.innerHTML = */
     }
+    let totalPrix = document.getElementById("subTotal");
+    totalPrix.textContent = prix;
 }
 
 afficherLePanier();
