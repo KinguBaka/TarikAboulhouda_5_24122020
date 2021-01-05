@@ -23,7 +23,7 @@ function afficherLeProduit(nounours) {
         document.getElementById("select").appendChild(newColors);
       });
       let newPrix = document.getElementById("prix");
-      newPrix.textContent = elem.price/100 + "€";
+      newPrix.textContent = elem.price/100;
     }
   }
 }
