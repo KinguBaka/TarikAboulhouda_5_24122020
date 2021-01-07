@@ -1,4 +1,4 @@
-
+// ---------- AFFICHER TOUS LES PRODUITS -----------
 function afficherLeToutSousFormeDeDivision(nounours) {
     for (let elem of nounours) {
         let newNournours = document.createElement("div");       // Création d'une div pour chaque nounourse
