@@ -22,3 +22,15 @@ function afficherLePanier () {
 }
 afficherLePanier();
 
+
+
+
+
+
+async function fillProducts() {
+    await fetch('http://localhost:3000/api/teddies') // will return info, but in wrong format
+      .then((response) => response.json()) // will return info, in json format
+      .then((nounours) => afficherLeToutSousFormeDeDivision(nounours)) // main code here, using json info
+}
+  
+fillProducts()
