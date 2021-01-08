@@ -37,6 +37,7 @@ function ajouteUnProduitAuPanier() {
   let oldItems = JSON.parse(localStorage.getItem("listeProduit")) || [];
   //création d'un nouvel objet
   let newItem = {
+    "id" : idProduct,
     "name" : document.getElementById("nameTitle").innerHTML,
     "color" : document.getElementById("select").options[document.getElementById("select").selectedIndex].text,
     "quantity" : 1,
