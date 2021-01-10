@@ -32,6 +32,7 @@
             </nav>
         </header>
 
+
         <div class="container">
             <div class="jumbotron">
                 <h1 class="text-center">Mon panier</h1>
@@ -54,33 +55,32 @@
                 <p><strong> Sous total :  <span id="subTotal"></span>€</strong></p>
             </div>
 
-            <form class="row g-3" id="formPasserCommande">
+            <form class="row g-3" >
                 <div class="col-md-6">
                   <label for="prenom" class="form-label">Prénom</label>
-                  <input type="text" class="form-control" id="prenom" onchange=verifForm() required>
+                  <input type="text" class="form-control" id="prenom" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-6">
                   <label for="nom" class="form-label">Nom</label>
-                  <input type="text" class="form-control" id="nom" onchange=verifForm() required>
+                  <input type="text" class="form-control" id="nom" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-8">
                   <label for="adresse" class="form-label">Adresse</label>
-                  <input type="text" class="form-control" id="adresse" onchange=verifForm() required>
+                  <input type="text" class="form-control" id="adresse" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-4">
                   <label for="ville" class="form-label">Ville</label>
-                  <input type="text" class="form-control" id="ville" onchange=verifForm() required>
+                  <input type="text" class="form-control" id="ville" onchange="verifForm()" required>
                 </div>
                 <div class="col-6">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" onchange=verifForm() required>
+                    <input type="text" class="form-control" id="email" onchange="verifForm()" required>
                 </div>
-                <div id="divButton" class="col-12">
-                    <button class="btn btn-primary" id="confirmCommand" type="submit" disabled="true" onclick=requeteCommande() formaction="./confirmation.html">Passer la commande</button>
+                <div id="divButton2" class="col-12">
+                    <button  class="btn btn-primary" id="confirmCommand" type="submit" disabled="true" formaction="./confirmation.html" onclick=requeteCommande()> Passer la commande </button>
                 </div>
             </form>
         </div>
-
 
         <!-- Footer-->
         <footer class="bg-dark">

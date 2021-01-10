@@ -26,6 +26,15 @@ function afficherLePanier () {
 }
 afficherLePanier();
 
+function stockerPrix() {
+    localStorage.removeItem("prixTotalCommande");
+    let prix = document.getElementById("subTotal").innerHTML;
+    let stockageprix = [];
+    stockageprix.push(prix);
+    localStorage.setItem("prixTotalCommande", stockageprix);
+}
+stockerPrix()
+
 
 // Verifie que chaque champ est bien rempli pour pouvoir passer la commande
 function verifForm() {
@@ -63,17 +72,19 @@ function creerObjetContact() {
     return contact;
 };
 
+// Assemble l'objet de contact et le tableau d'id de produit
 function passerLaCommande() {
     let products = creerTableauCommande();
     let contact = creerObjetContact();
     return {contact, products};
 };
 
+// Clear le localstorage puis stock l'objet de retour de fetch dedans
 function stockerLaCommande(commande) {
-    localStorage.clear();
     localStorage.setItem("commande", JSON.stringify(commande));
 };
 
+// Requette Fetch POST
 function requeteCommande() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
