@@ -69,20 +69,23 @@ function passerLaCommande() {
     return {contact, products};
 };
 
-function pageLinkCommande(commande) {
-    let linkCommande = document.getElementById("confirmCommand");
-    linkCommande.setAttribute("formaction", "confirmation.html?id"+commande.orderId)
-}
-
-async function fillProducts() {
-    await fetch('http://localhost:3000/api/teddies/order', {
-        method: 'POST',
-        headers: {
-            "Content-Type" : "application/json"
-        },
-        body: JSON.stringify(passerLaCommande())
-    })
-        .then((response) => response.json())
-        .then((commande) => pageLinkCommande(commande)) 
+function stockerLaCommande(commande) {
+    localStorage.clear();
+    localStorage.setItem("commande", JSON.stringify(commande));
 };
 
+function requeteCommande() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    let data = JSON.stringify(passerLaCommande());
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: data,
+        redirect: 'follow'
+      };
+    fetch('http://localhost:3000/api/teddies/order', requestOptions)
+        .then((response) => response.json())
+        .then((commande) => stockerLaCommande(commande)) 
+};
