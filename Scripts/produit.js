@@ -3,6 +3,7 @@ const urlId = window.location.search;
 const pageId = new URLSearchParams(urlId);
 const idProduct = pageId.get('id');
 
+
 function afficherLeProduit(nounours) { 
   let newName = document.getElementById("nameTitle");
   newName.textContent = nounours.name;
@@ -21,12 +22,19 @@ function afficherLeProduit(nounours) {
   });
   let newPrix = document.getElementById("prix");
   newPrix.textContent = nounours.price/100;
+  document.title = "Orinoco - " + nounours.name;
 }
 
 async function fillProducts() {
-  await fetch('http://localhost:3000/api/teddies/'+idProduct) // will return info, but in wrong format
-    .then((response) => response.json()) // will return info, in json format
-    .then((nounours) => afficherLeProduit(nounours)) // main code here, using json info
+  try {
+    await fetch('http://localhost:3000/api/teddies/'+idProduct) // will return info, but in wrong format
+      .then((response) => response.json()) // will return info, in json format
+      .then((nounours) => afficherLeProduit(nounours)) // main code here, using json info
+  } catch (error) {
+    await fetch('https://oc-p5-api.herokuapp.com/api/teddies/'+idProduct)
+      .then((response) => response.json()) // will return info, in json format
+      .then((nounours) => afficherLeProduit(nounours))
+  }
 }
 fillProducts()
 

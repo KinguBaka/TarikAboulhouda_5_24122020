@@ -55,37 +55,41 @@
                 <p><strong> Sous total :  <span id="subTotal"></span>€</strong></p>
             </div>
 
-            <form class="row g-3" >
+            <!-- test formulaire-->
+           
+
+            <h1>Test formulaire</h1>
+            <form class="row g-3">
                 <div class="col-md-6">
-                  <label for="prenom" class="form-label">Prénom</label>
-                  <input type="text" class="form-control" id="prenom" onchange="verifForm()" required>
+                    <label for="prenom" class="form-label">Prénom *</label>
+                    <input type="text" class="form-control" id="prenom" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-6">
-                  <label for="nom" class="form-label">Nom</label>
-                  <input type="text" class="form-control" id="nom" onchange="verifForm()" required>
+                    <label for="nom" class="form-label">Nom *</label>
+                    <input type="text" class="form-control" id="nom" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-8">
-                  <label for="adresse" class="form-label">Adresse</label>
-                  <input type="text" class="form-control" id="adresse" onchange="verifForm()" required>
+                    <label for="adresse" class="form-label">Adresse *</label>
+                    <input type="text" class="form-control" id="adresse" onchange="verifForm()" required>
                 </div>
                 <div class="col-md-4">
-                  <label for="ville" class="form-label">Ville</label>
-                  <input type="text" class="form-control" id="ville" onchange="verifForm()" required>
+                    <label for="ville" class="form-label">Ville *</label>
+                    <input type="text" class="form-control" id="ville" onchange="verifForm()" required>
                 </div>
                 <div class="col-6">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email *</label>
                     <input type="text" class="form-control" id="email" onchange="verifForm()" required>
                 </div>
-                <div id="divButton2" class="col-12">
-                    <button  class="btn btn-primary" id="confirmCommand" type="submit" disabled="true" formaction="./confirmation.html" onclick=requeteCommande()> Passer la commande </button>
-                </div>
             </form>
+            <p>* Champs obligatoires</p>
+            <button class="btn btn-primary" id="confirmCommand" onclick=requeteCommande() > Passer la commande </button>
         </div>
+        
 
         <!-- Footer-->
         <footer class="bg-dark">
             <div class="container">
-                <a href="">Nous contacter !</a>
+                <a href="mailto:Orinoco-support@Orinoco.fr">Nous contacter !</a>
             </div>
         </footer>
         

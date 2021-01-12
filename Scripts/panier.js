@@ -82,10 +82,11 @@ function passerLaCommande() {
 // Clear le localstorage puis stock l'objet de retour de fetch dedans
 function stockerLaCommande(commande) {
     localStorage.setItem("commande", JSON.stringify(commande));
+    window.location.href='./confirmation.html'
 };
 
 // Requette Fetch POST
-function requeteCommande() {
+async function requeteCommande() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
@@ -95,8 +96,14 @@ function requeteCommande() {
         headers: myHeaders,
         body: data,
         redirect: 'follow'
-      };
-    fetch('http://localhost:3000/api/teddies/order', requestOptions)
-        .then((response) => response.json())
-        .then((commande) => stockerLaCommande(commande)) 
+    };
+    try {
+        await fetch('http://localhost:3000/api/teddies/order', requestOptions)
+            .then((response) => response.json())
+            .then((commande) => stockerLaCommande(commande))
+    } catch (error) {
+        await fetch('https://oc-p5-api.herokuapp.com/api/teddies/order', requestOptions)
+            .then((response) => response.json())
+            .then((commande) => stockerLaCommande(commande))
+    }
 };
