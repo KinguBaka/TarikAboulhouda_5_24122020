@@ -1,5 +1,5 @@
 // ----------- AFFICHER LE PANIER -------------
-function afficherLePanier () {
+function afficherLePanier() {
     // Recupération - Affichage des produits dans le localstorage  
     let storagePanier = JSON.parse(localStorage.getItem("listeProduit"));
     let afficherPanier = document.getElementById("tableBody");
@@ -26,6 +26,7 @@ function afficherLePanier () {
 }
 afficherLePanier();
 
+// Stock le total du prix dans le localstorage
 function stockerPrix() {
     localStorage.removeItem("prixTotalCommande");
     let prix = document.getElementById("subTotal").innerHTML;
@@ -73,37 +74,35 @@ function creerObjetContact() {
 };
 
 // Assemble l'objet de contact et le tableau d'id de produit
-function passerLaCommande() {
+function assembleProductEtContact() {
     let products = creerTableauCommande();
     let contact = creerObjetContact();
     return {contact, products};
 };
 
-// Clear le localstorage puis stock l'objet de retour de fetch dedans
-function stockerLaCommande(commande) {
-    localStorage.setItem("commande", JSON.stringify(commande));
-    window.location.href='./confirmation.html'
-};
-
-// Requette Fetch POST
-async function requeteCommande() {
-    var myHeaders = new Headers();
+// Requette Fetch Post qui envoi l'objet de contact et tableau d'id
+async function passerCommande(url) {
+    let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
-    let data = JSON.stringify(passerLaCommande());
+    let data = JSON.stringify(assembleProductEtContact());
     let requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: data,
-        redirect: 'follow'
+        body: data
     };
+    await fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((commande) => {
+            localStorage.setItem("commande", JSON.stringify(commande))
+            window.location.href='./confirmation.html'
+        })
+};
+
+// Requette Fetch POST
+async function requeteFetchPasserCommande() {
     try {
-        await fetch('http://localhost:3000/api/teddies/order', requestOptions)
-            .then((response) => response.json())
-            .then((commande) => stockerLaCommande(commande))
+        await passerCommande('http://localhost:3000/api/teddies/order')
     } catch (error) {
-        await fetch('https://oc-p5-api.herokuapp.com/api/teddies/order', requestOptions)
-            .then((response) => response.json())
-            .then((commande) => stockerLaCommande(commande))
+        await passerCommande('https://oc-p5-api.herokuapp.com/api/teddies/order')
     }
 };

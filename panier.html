@@ -54,11 +54,6 @@
 
                 <p><strong> Sous total :  <span id="subTotal"></span>€</strong></p>
             </div>
-
-            <!-- test formulaire-->
-           
-
-            <h1>Test formulaire</h1>
             <form class="row g-3">
                 <div class="col-md-6">
                     <label for="prenom" class="form-label">Prénom *</label>
@@ -82,7 +77,7 @@
                 </div>
             </form>
             <p>* Champs obligatoires</p>
-            <button class="btn btn-primary" id="confirmCommand" onclick=requeteCommande() > Passer la commande </button>
+            <button class="btn btn-primary" id="confirmCommand" disabled='true' onclick="requeteFetchPasserCommande()" > Passer la commande </button>
         </div>
         
 

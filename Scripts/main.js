@@ -25,7 +25,7 @@ function afficherLeToutSousFormeDeDivision(nounours) {
     }
 };
 
-async function fillProducts() {
+async function requeteFetchAfficherLeTout() {
     try {
         await fetch('http://localhost:3000/api/teddies') // will return info, but in wrong format
           .then((response) => response.json()) // will return info, in json format
@@ -36,5 +36,4 @@ async function fillProducts() {
             .then((nounours) => afficherLeToutSousFormeDeDivision(nounours))
     }
 }
-  
-fillProducts()
+requeteFetchAfficherLeTout()

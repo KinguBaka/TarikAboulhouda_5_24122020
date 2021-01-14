@@ -1,4 +1,4 @@
-
+// Affiche les informations de la commande dans la page confirmation.html 
 function afficherInformation() {
     let informations = JSON.parse(localStorage.getItem("commande"));
     let Prix = localStorage.getItem("prixTotalCommande");

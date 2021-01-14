@@ -25,7 +25,7 @@ function afficherLeProduit(nounours) {
   document.title = "Orinoco - " + nounours.name;
 }
 
-async function fillProducts() {
+async function requeteFetchAfficherLeProduit() {
   try {
     await fetch('http://localhost:3000/api/teddies/'+idProduct) // will return info, but in wrong format
       .then((response) => response.json()) // will return info, in json format
@@ -36,7 +36,7 @@ async function fillProducts() {
       .then((nounours) => afficherLeProduit(nounours))
   }
 }
-fillProducts()
+requeteFetchAfficherLeProduit()
 
 // ---------- AJOUTER LE PRODUIT AU PANIER ------------
 
@@ -56,13 +56,13 @@ function ajouteUnProduitAuPanier() {
   if (oldItems.length == 0) {
       oldItems.push(newItem);
   } else {
-      ajouterQuantite(oldItems, newItem);
+    compareEtAjouteQuantite(oldItems, newItem);
   }
   //Ajoute l'array avec les nouveaus objet dans le localstorage
   localStorage.setItem("listeProduit", JSON.stringify(oldItems));
 }
 
-function ajouterQuantite(oldItems, newItem) {
+function compareEtAjouteQuantite(oldItems, newItem) {
   let ajoutQuantite = false;
   //ajoute une quantite si l'element est deja present dedans
   for (let elem of oldItems) {
