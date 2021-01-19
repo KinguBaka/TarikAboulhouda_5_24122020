@@ -25,16 +25,10 @@ function afficherLeProduit(nounours) {
   document.title = "Orinoco - " + nounours.name;
 }
 
-async function requeteFetchAfficherLeProduit() {
-  try {
-    await fetch('http://localhost:3000/api/teddies/'+idProduct) // will return info, but in wrong format
+function requeteFetchAfficherLeProduit() {
+  fetch(config.path + config.api+"/"+idProduct) // will return info, but in wrong format
       .then((response) => response.json()) // will return info, in json format
       .then((nounours) => afficherLeProduit(nounours)) // main code here, using json info
-  } catch (error) {
-    await fetch('https://oc-p5-api.herokuapp.com/api/teddies/'+idProduct)
-      .then((response) => response.json()) // will return info, in json format
-      .then((nounours) => afficherLeProduit(nounours))
-  }
 }
 requeteFetchAfficherLeProduit()
 
@@ -61,6 +55,7 @@ function ajouteUnProduitAuPanier() {
   //Ajoute l'array avec les nouveaus objet dans le localstorage
   localStorage.setItem("listeProduit", JSON.stringify(oldItems));
 }
+document.getElementById("ajouteProduitAuPanier").addEventListener("click", ajouteUnProduitAuPanier);
 
 function compareEtAjouteQuantite(oldItems, newItem) {
   let ajoutQuantite = false;

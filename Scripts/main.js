@@ -25,15 +25,7 @@ function afficherLeToutSousFormeDeDivision(nounours) {
     }
 };
 
-async function requeteFetchAfficherLeTout() {
-    try {
-        await fetch('http://localhost:3000/api/teddies') // will return info, but in wrong format
-          .then((response) => response.json()) // will return info, in json format
-          .then((nounours) => afficherLeToutSousFormeDeDivision(nounours)) // main code here, using json info
-    } catch (error) {
-        await fetch('https://oc-p5-api.herokuapp.com/api/teddies')
-            .then((response) => response.json()) // will return info, in json format
-            .then((nounours) => afficherLeToutSousFormeDeDivision(nounours))
-    }
-}
-requeteFetchAfficherLeTout()
+
+fetch(config.path + config.api) // will return info, but in wrong format
+    .then((response) => response.json()) // will return info, in json format
+    .then((nounours) => afficherLeToutSousFormeDeDivision(nounours)) // main code here, using json info

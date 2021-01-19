@@ -1,40 +1,34 @@
 // ----------- AFFICHER LE PANIER -------------
-function afficherLePanier() {
-    // Recupération - Affichage des produits dans le localstorage  
-    let storagePanier = JSON.parse(localStorage.getItem("listeProduit"));
-    let afficherPanier = document.getElementById("tableBody");
-    let prix = 0;
-    // Création du tableau avec les différents produits
-    for (let i = 0; i < storagePanier.length; i ++) {
-        let newElem = document.createElement("tr")
-        afficherPanier.appendChild(newElem);
-        for (let elem of Object.values(storagePanier[i])) {
-            let newArticle = document.createElement("td");
-            newArticle.innerHTML = elem;
-            newElem.appendChild(newArticle);
-        }
-        // Total des prix
-        for (let elem of Object.keys(storagePanier[i])) {
-            if (elem == "price") {
-                prix += storagePanier[i].price;
-            }
+// Recupération - Affichage des produits dans le localstorage  
+let storagePanier = JSON.parse(localStorage.getItem("listeProduit"));
+let afficherPanier = document.getElementById("tableBody");
+let prix = 0;
+// Création du tableau avec les différents produits
+for (let i = 0; i < storagePanier.length; i ++) {
+    let newElem = document.createElement("tr")
+    afficherPanier.appendChild(newElem);
+    for (let elem of Object.values(storagePanier[i])) {
+        let newArticle = document.createElement("td");
+        newArticle.innerHTML = elem;
+        newElem.appendChild(newArticle);
+    }
+    // Total des prix
+    for (let elem of Object.keys(storagePanier[i])) {
+        if (elem == "price") {
+            prix += storagePanier[i].price;
         }
     }
-    // Total des prix affiché sous le tableau
-    let totalPrix = document.getElementById("subTotal");
-    totalPrix.textContent = prix;
 }
-afficherLePanier();
+    // Total des prix affiché sous le tableau
+let totalPrix = document.getElementById("subTotal");
+totalPrix.textContent = prix;
 
 // Stock le total du prix dans le localstorage
-function stockerPrix() {
-    localStorage.removeItem("prixTotalCommande");
-    let prix = document.getElementById("subTotal").innerHTML;
-    let stockageprix = [];
-    stockageprix.push(prix);
-    localStorage.setItem("prixTotalCommande", stockageprix);
-}
-stockerPrix()
+localStorage.removeItem("prixTotalCommande");
+let prixTotal = document.getElementById("subTotal").innerHTML;
+let stockageprix = [];
+stockageprix.push(prixTotal);
+localStorage.setItem("prixTotalCommande", stockageprix);
 
 
 // Verifie que chaque champ est bien rempli pour pouvoir passer la commande
@@ -81,7 +75,7 @@ function assembleProductEtContact() {
 };
 
 // Requette Fetch Post qui envoi l'objet de contact et tableau d'id
-async function passerCommande(url) {
+function passerCommande() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let data = JSON.stringify(assembleProductEtContact());
@@ -90,19 +84,11 @@ async function passerCommande(url) {
         headers: myHeaders,
         body: data
     };
-    await fetch(url, requestOptions)
+    fetch(config.path + config.api + "/order", requestOptions)
         .then((response) => response.json())
         .then((commande) => {
             localStorage.setItem("commande", JSON.stringify(commande))
             window.location.href='./confirmation.html'
         })
 };
-
-// Requette Fetch POST
-async function requeteFetchPasserCommande() {
-    try {
-        await passerCommande('http://localhost:3000/api/teddies/order')
-    } catch (error) {
-        await passerCommande('https://oc-p5-api.herokuapp.com/api/teddies/order')
-    }
-};
+document.getElementById("confirmCommand").addEventListener("click", passerCommande);
