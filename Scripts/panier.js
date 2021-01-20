@@ -1,6 +1,4 @@
 // ----------- AFFICHER LE PANIER -------------
-// Recupération - Affichage des produits dans le localstorage  
-let storagePanier = JSON.parse(localStorage.getItem("listeProduit"));
 let afficherPanier = document.getElementById("tableBody");
 let prix = 0;
 // Création du tableau avec les différents produits
@@ -19,7 +17,7 @@ for (let i = 0; i < storagePanier.length; i ++) {
         }
     }
 }
-    // Total des prix affiché sous le tableau
+// Total des prix affiché sous le tableau
 let totalPrix = document.getElementById("subTotal");
 totalPrix.textContent = prix;
 
@@ -46,7 +44,6 @@ function verifForm() {
 
 // Creer un tableau avec les ids des produits commandés
 function creerTableauCommande() {
-    let storagePanier = JSON.parse(localStorage.getItem("listeProduit"));
     let productsAvecDoublon = [];
     for (let elem of storagePanier) {
         productsAvecDoublon.push(elem.id);

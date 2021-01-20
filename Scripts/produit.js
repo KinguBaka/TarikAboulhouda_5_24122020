@@ -35,8 +35,6 @@ requeteFetchAfficherLeProduit()
 // ---------- AJOUTER LE PRODUIT AU PANIER ------------
 
 function ajouteUnProduitAuPanier() {
-  //Récupére l'objet JSON deja renseigné dans le localstorage
-  let oldItems = JSON.parse(localStorage.getItem("listeProduit")) || [];
   //création d'un nouvel objet
   let newItem = {
     "id" : idProduct,
