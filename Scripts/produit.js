@@ -25,13 +25,11 @@ function afficherLeProduit(nounours) {
   document.title = "Orinoco - " + nounours.name;
 }
 
-function requeteFetchAfficherLeProduit() {
-  fetch(config.path + config.api+"/"+idProduct) // will return info, but in wrong format
-      .then((response) => response.json()) // will return info, in json format
-      .then((nounours) => afficherLeProduit(nounours)) // main code here, using json info
-}
-requeteFetchAfficherLeProduit()
+fetch(config.path + config.api+"/"+idProduct) // will return info, but in wrong format
+    .then((response) => response.json()) // will return info, in json format
+    .then((nounours) => afficherLeProduit(nounours)) // main code here, using json info
 
+    
 // ---------- AJOUTER LE PRODUIT AU PANIER ------------
 
 function ajouteUnProduitAuPanier() {
